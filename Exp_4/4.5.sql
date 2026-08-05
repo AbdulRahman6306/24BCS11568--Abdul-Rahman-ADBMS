@@ -1,12 +1,27 @@
-/* Write a query to do the following:
- - JOIN the tables 'student' and 'course' using 'Course_id' to match both the tables and output the joined table.
- - LEFT JOIN the tables 'student' and 'course' using 'Course_id' to match both the tables and output the joined table. */
- 
+-- We have a student table that also stores the Course_id of a student's favorite course. Our task has two parts related to using a SELF JOIN:
 
-select  *from student as s
-JOIN course c
-on s.Course_id = c.Course_id;
 
-select  *from student as s
-left JOIN course c
-on s.Course_id = c.Course_id;
+SELECT
+    s1.St_id,
+    s1.St_Name,
+    s1.Department,
+    s2.St_id,
+    s2.St_Name,
+    s2.Department
+FROM student s1
+INNER JOIN student s2
+on s1.St_id != s2.St_id and s1.department = s2.department;
+   
+   
+--     Find pairs of students that belong to the same department.
+--     Identify students who have chosen the same Course_id as their favorite. Display the St_id, St_Name, and Course_id and order it in increasing Course_id.
+SELECT
+    s1.St_id,
+    s1.St_Name,
+    s1.Course_id
+FROM student s1
+INNER JOIN student s2
+on s1.St_id != s2.St_id and s1.Course_id = s2.Course_id
+order by s1.Course_id;
+
+
