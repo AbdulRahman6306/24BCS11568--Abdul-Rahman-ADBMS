@@ -1,28 +1,13 @@
--- We have a student table that also stores the Course_id of a student's favorite course. Our task has two parts related to using a SELF JOIN:
+-- 1.Employee and Manager Names: Display a list of employee names along with their manager's names. Use the 'employees' table provided.
+
+select e1.employee_name as employee, e2.employee_name as Manager
+from employees e1
+left join employees e2
+on e1.manager_id = e2.employee_id;
 
 
-SELECT
-    s1.St_id,
-    s1.St_Name,
-    s1.Department,
-    s2.St_id,
-    s2.St_Name,
-    s2.Department
-FROM student s1
-INNER JOIN student s2
-    ON s1.Department = s2.Department
-   AND s1.St_id <> s2.St_id;
-   
-   
---     Find pairs of students that belong to the same department.
---     Identify students who have chosen the same Course_id as their favorite. Display the St_id, St_Name, and Course_id and order it in increasing Course_id.
-SELECT DISTINCT
-    s1.St_id,
-    s1.St_Name,
-    s1.Course_id
-FROM student s1
-INNER JOIN student s2
-    ON s1.Course_id = s2.Course_id
-   AND s1.St_id <> s2.St_id
-ORDER BY s1.Course_id;
+-- 2.Every Possible Combination: Show every possible combination of 'customer_name' from the 'customers' table and 'product_name' from the 'products' table.
 
+select  customer_name, p.product_name
+from customers as c
+cross join products p;
